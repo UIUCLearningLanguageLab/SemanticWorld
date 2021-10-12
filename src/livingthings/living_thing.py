@@ -13,8 +13,8 @@ class LivingThing(entities.Entity):
 		self.genome = genome.Genome(entity_type_label, mother_genome, father_genome)
 		self.phenotype = phenotype.Phenotype(deepcopy(self.genome))
 		self.body = body.Body(deepcopy(self.phenotype))
-		self.drive_system = drive_system.DriveSystem(deepcopy(self.phenotype['drive_system'])) # body's need for sleep sleepiness
-
+		self.drive_system = drive_system.DriveSystem(deepcopy(self.phenotype.trait_dict['drive_system'])) # body's need for sleep sleepiness
+		print(self.drive_system)
 	#     self.sensory_system = sensory_system.SensorySystem(self.phenotype) [0010101001110101]
 	#     self.motor_system = motor_system.MotorSystem(self.phenotype)
 
