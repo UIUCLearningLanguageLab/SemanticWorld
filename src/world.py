@@ -12,28 +12,35 @@ class World:
 		self.living_thing_list = []
 		self.nonliviing_thing_list = []
 
+		self.living_thing_count_dict = {}
+		self.nonliving_thing_count_dict = {}
+
 		self.terrain_map = terrain.TerrainMap()
+		self.turn_counter = 0
 
-		self.place_entities()
+		self.place_living_things()
+		print(self)
 
-		# for living_thing in self.living_thing_list:
-		# 	print(living_thing, living_thing.position)
-		# print()
-		# for i in range(self.terrain_map.shape[0]):
-		# 	for j in range(self.terrain_map.shape[1]):
-		# 		if len(self.terrain_map.terrain_tile_list[i][j].entity_list) > 0:
-		# 			print(i, j, self.terrain_map.terrain_tile_list[i][j].position,
-		# 			self.terrain_map.terrain_tile_list[i][j].elevation, self.terrain_map.terrain_tile_list[i][j].entity_list)
-	
-	def place_entities(self):
-		print("    Placing Entities")
+	def __repr__(self):
+		output_string = "\nWorld:\n"
+		output_string += "   Map Size: {}\n".format(self.terrain_map.shape)
+		output_string += "   Living Things:\n"
+		for label in self.living_thing_count_dict:
+			output_string += "       {}: {}\n".format(label, self.living_thing_count_dict[label])
+			for living_thing in self.living_thing_list:
+				if living_thing.entity_type_label == label:
+					output_string += "            {}: {}\n".format(living_thing.name, living_thing.position)
+		return output_string
+
+	def place_living_things(self):
+		print("    Placing Living Things")
 		for label in world_cfg.World.living_things:
 			n = world_cfg.World.living_things[label]['n']
 			distribution = world_cfg.World.living_things[label]['distribution']
 			print("        Placing {} of type {}".format(n, label))
 			cluster_center  = self.generate_random_position()
 			for i in range(n):
-				new_living_thing = living_thing.LivingThing(label, None, None)
+				new_living_thing = living_thing.LivingThing(label, i, None, None)
 				if distribution[0] == 'random':
 					start_position = self.generate_random_position()
 				elif distribution[0] == 'clustered':
@@ -44,6 +51,10 @@ class World:
 				new_living_thing.position = start_position
 				self.terrain_map.terrain_tile_list[start_position[0]][start_position[1]].entity_list.append(new_living_thing)
 				self.living_thing_list.append(new_living_thing)
+
+				if label not in self.living_thing_count_dict:
+					self.living_thing_count_dict[label] = 0
+				self.living_thing_count_dict[label] += 1
 				
 	def generate_random_position(self):
 		legal_position = False
@@ -61,10 +72,11 @@ class World:
 		return (x,y)
 	
 	def next(self):
-		for animate_entity in self.animate_entity_list:
-			animate_entity.take_turn()
+		for living_thing in self.living_thing_list:
+			living_thing.take_turn(self)   # TODO figure out a way to make the reference to world passed in as read only
 
-
+		self.turn_counter += 1
+		print("Finished Turn {}".format(self.turn_counter))
 
 
 

@@ -1,3 +1,5 @@
+import numpy as np
+
 class Phenotype:
 
 	def __init__(self, genome):
@@ -9,11 +11,8 @@ class Phenotype:
 						   'drive_system': {},
 						   'sensory_system': {},
 						   'actions': {},}
-
-		self.appearance_label_list = []
-		self.appearance_index_dict = {}			   
+			   
 		self.appearance_dict = {}
-		self.num_appearance_traits = 0
 
 		for gene_label in genome.gene_dict:
 			gene = genome.gene_dict[gene_label]
@@ -31,14 +30,10 @@ class Phenotype:
 					raise Exception("Unrecognized gene type {} for gene {}".format(gene.gene_type, gene_label))
 
 				if gene.visible:
-					self.appearance_label_list.append(gene_label)
-					self.appearance_index_dict[gene_label] = self.num_appearance_traits
-					self.num_appearance_traits += 1
 					self.appearance_dict[gene_label] = self.trait_dict[gene.system][gene_label]
 			
 			else:
 				raise Exception("Unrecognized system {} for gene {}".format(gene.system, gene_label))
-
 
 	def __repr__(self):
 		output_string = "Phenotype: {} traits\n".format(len(self.trait_dict))

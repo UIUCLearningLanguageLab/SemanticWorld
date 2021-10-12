@@ -5,5 +5,5 @@ if __name__ == "__main__" :
 
     the_world = world.World()
 
-    # the_display = display.Display(the_world)
-    # the_display.on_execute()
+    for i in range(1):
+        the_world.next()

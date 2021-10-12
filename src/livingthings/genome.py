@@ -127,7 +127,8 @@ class Gene:
 		self.mutable = mutable
 		self.visible = visible
 
-		# TODO error check the trait dict in the cfg file, including making sure there are no duplicate keys
+		# TODO error check the trait dict in the cfg file, including making sure there are no duplicate keys across systems
+		# ie if there is a sensory_system['trait_name'] and a drive_system['trait_name'], that will cause problems
 
 		if gene_type == 'binary_proportion':
 			self.generate_binary_proportion_sequence()

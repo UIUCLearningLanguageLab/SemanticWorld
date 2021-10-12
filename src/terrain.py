@@ -80,11 +80,24 @@ class TerrainMap:
 class TerrainTile:
 
 	def __init__(self, x, y, elevation):
-		self.position = (x,  y)
-		# self.size = world_cfg.World.tile_size
+		self.position = (x, y)
+		self.size = world_cfg.World.tile_size
 		self.elevation = elevation
 		self.entity_list = []
+
+		self.num_features = 1
+		self.feature_label_list = []
+		self.feature_label_index_dict = {}
+		self.feature_vector = np.zeros([self.num_features])
+
+		self.init_features()
 	
 	def __repr__(self):
 		output_string = "Terrain Tile: ({},{})   Elevation: {:0.2f}\n".format(self.position[0], self.position[1], self.elevation)
 		return output_string
+
+	def init_features(self):
+
+		self.feature_label_list.append("elevation")
+		self.feature_label_index_dict["elevation"] = 0
+		self.feature_vector[0] = self.elevation

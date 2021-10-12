@@ -11,7 +11,7 @@ class World:
 	peak_position_range = (.25, .25)    # this is the proportion of world size (counting from middle x & y) where peaks can spawn
 	peak_variance_range = (.1, .2)		# this is peak variance, in terms of the proportion of land size
 
-	tile_size = 1						# this is the size of each tile, in "meters"
+	tile_size = 20						# this is the size of each tile, in "meters"
 
 	# these are general properties of entities
 	mutation_rate: 0.01
@@ -19,8 +19,8 @@ class World:
 	# these control the size of each population and rules about their distribution
 	living_things = {
 				'human': {
-							'n': 1,
-							'distribution': ['random', 4],			# can be ['random'] or ['clustered', n], where n is variance from cluster center
+							'n': 2,
+							'distribution': ['clustered', 4],			# can be ['random'] or ['clustered', n], where n is variance from cluster center
 							'config_file': 'human_cfg',
 						 }
 	}

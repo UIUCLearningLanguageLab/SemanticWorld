@@ -16,7 +16,6 @@ class DriveSystem:
 			output_string += "    {}) {}: {:0.3f}\n".format(i, self.drive_label_list[i], self.drive_array[i])
 		return output_string
 
-
 	def init_drive_system(self, drive_dict):
 		self.drive_array = np.zeros([len(drive_dict)])
 
@@ -24,5 +23,8 @@ class DriveSystem:
 			self.drive_label_list.append(drive)
 			self.drive_index_dict[drive] = self.num_drives
 			self.num_drives += 1
+	
+	def update(self):
+		pass
 
 

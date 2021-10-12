@@ -93,14 +93,14 @@ class Genome:
  
      # sensory sysstem traits affecting what an entity can sense from it's environment
         'visual_angle':               ['sensory_system', 'binary_int',  9, 360, 0, False, False],  # the size of the visual peripheral field (in degrees)
-        'visual_field_range':         ['sensory_system', 'binary_int',  6, 100000, 0, False, False],   # the range of visual perception (in meters)
+        'visual_field_range':         ['sensory_system', 'binary_int',  6, 60, 0, False, False],   # the range of visual perception (in meters)
         'gets_entity_identity':       ['sensory_system', 'binary_int',  1, 1, 0, False, False],    # if true, entity receives a list of entity types for each entity in visual field
         'gets_entity_coord':          ['sensory_system', 'binary_int',  1, 1, 0, False, False],    # if true, entity receives a list of coordinates for each entity in visual field
-        'gets_entity_feature_labels': ['sensory_system', 'binary_int',  1, 0, 0, False, False],    # if true, entity recieves a list of labels for entity feature vectors                                
-        'gets_entity_feature_vector': ['sensory_system', 'binary_int',  1, 0, 0, False, False],    # if true, entity recieves a feature vector for each entity, in visual field
-        'gets_terrain_coord':          ['sensory_system', 'binary_int',  1, 0, 0, False, False],   # if true, entity receives a list of coordinates for each terrain square in visual field
-        'gets_terrain_feature_labels': ['sensory_system', 'binary_int',  1, 0, 0, False, False],   # if true, entity recieves a list of labels for terrain feature vectors                                
-        'gets_terrain_feature_vector': ['sensory_system', 'binary_int',  1, 0, 0, False, False],   # if true, entity recieves a feature vector for each entity, in visual field           
+        'gets_entity_feature_labels': ['sensory_system', 'binary_int',  1, 1, 0, False, False],    # if true, entity recieves a list of labels for entity feature vectors                                
+        'gets_entity_feature_vector': ['sensory_system', 'binary_int',  1, 1, 0, False, False],    # if true, entity recieves a feature vector for each entity, in visual field
+        'gets_terrain_coord':          ['sensory_system', 'binary_int',  1, 1, 0, False, False],   # if true, entity receives a list of coordinates for each terrain square in visual field
+        'gets_terrain_feature_labels': ['sensory_system', 'binary_int',  1, 1, 0, False, False],   # if true, entity recieves a list of labels for terrain feature vectors                                
+        'gets_terrain_feature_vector': ['sensory_system', 'binary_int',  1, 1, 0, False, False],   # if true, entity recieves a feature vector for each entity, in visual field           
 
         # motor system traits used to decide what actions an entity can take. Each action's list has an additional argument
         'sleep':             ['actions', 'binary_int',  1, 1, 0, False, True],

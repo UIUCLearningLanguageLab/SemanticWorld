@@ -23,16 +23,10 @@ class Body:
 		self.metabolism_index_dict = {}
 		self.num_metabolizables = 0
 
-		self.appearance_size = 0
-		self.appearance_dict = None
-		self.appearance_label_list = []
-		self.appearance_label_index_dict = {}
-
 		self.initialize_physical_properties(phenotype.trait_dict['physical'])
 		self.initialize_body_states(phenotype.trait_dict['body_states'])
 		self.initialize_body_composition(phenotype.trait_dict['body_composition'])
 		self.initialize_metabolism(phenotype.trait_dict['metabolism'])
-		self.initialize_appearance(phenotype)
 		
 	def initialize_physical_properties(self, physical_trait_dict):
 		for physical_trait in physical_trait_dict:
@@ -71,7 +65,4 @@ class Body:
 			self.metabolism_index_dict[metabolizable_label] = self.num_metabolizables
 			self.metabolism_dict[metabolizable] = metabolism_dict[metabolizable]
 			self.num_metabolizables += 1
-	
-	def initialize_appearance(self, phenotype):
-		pass
-	# TODO figure out what to do about turning the phenotype.appearance_dict into something unlabeled
+
