@@ -58,7 +58,7 @@ class Genome:
 		self.gene_index_dict = {}
 		self.gene_label_list = []
 
-		species_cfg_filename = "config.entities." + species + "_cfg"
+		species_cfg_filename = "config.entities." + species + ".genome_cfg"
 		try:
 			genome_info = importlib.import_module(species_cfg_filename)
 		except:
