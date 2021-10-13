@@ -2,16 +2,11 @@ class Body:
 
 	def __init__(self, phenotype):
 
-		self.physical_property_label_list = []
-		self.physical_property_index_dict = {}
-		self.physical_property_dict = {}
-		self.num_physical_properties = 0
-
-		self.state_label_list = []
-		self.state_index_dict = {}
-		self.state_dict = {}
-		self.num_states = 0
-		self.state_category_dict = {}
+		self.position_label_list = []
+		self.position_index_dict = {}
+		self.position_dict = {}
+		self.num_positions = 0
+		self.position_category_dict = {}
 
 		self.composition_dict = {}
 		self.composition_label_list = []
@@ -23,30 +18,20 @@ class Body:
 		self.metabolism_index_dict = {}
 		self.num_metabolizables = 0
 
-		self.initialize_physical_properties(phenotype.trait_dict['physical'])
-		self.initialize_body_states(phenotype.trait_dict['body_states'])
+		self.initialize_body_positions(phenotype.trait_dict['body_states'])
 		self.initialize_body_composition(phenotype.trait_dict['body_composition'])
 		self.initialize_metabolism(phenotype.trait_dict['metabolism'])
-		
-	def initialize_physical_properties(self, physical_trait_dict):
-		for physical_trait in physical_trait_dict:
-			data = physical_trait.split('-')
-			physical_trait_label = data[0]
-			self.physical_property_label_list.append(physical_trait_label)
-			self.physical_property_index_dict[physical_trait_label] = self.num_physical_properties
-			self.num_physical_properties += 1
-			self.physical_property_dict[physical_trait_label] = physical_trait_dict[physical_trait]
 
-	def initialize_body_states(self, body_states_dict):
-		for state in body_states_dict:
-			data = state.split('-')
-			state_label = data[0]
+	def initialize_body_positions(self, body_position_dict):
+		for position in body_position_dict:
+			data = position.split('-')
+			position_label = data[0]
 			category = data[1]
-			self.state_category_dict[state_label] = category
-			self.state_label_list.append(state_label)
-			self.state_index_dict[state_label] = self.num_states
-			self.num_states += 1
-			self.state_dict[state_label] = body_states_dict[state]
+			self.position_category_dict[position_label] = category
+			self.position_label_list.append(position_label)
+			self.position_index_dict[position_label] = self.num_positions
+			self.num_positions += 1
+			self.position_dict[position_label] = body_position_dict[position]
 	
 	def initialize_body_composition(self, body_composition_dict):
 		for composite in body_composition_dict:

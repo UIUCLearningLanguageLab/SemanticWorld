@@ -2,6 +2,7 @@ from src import entities
 from src.livingthings import genome, phenotype, body, drive_system, sensory_system, motor_system
 from src.ai import ai
 from copy import deepcopy
+import random
 
 
 class LivingThing(entities.Entity):
@@ -10,7 +11,12 @@ class LivingThing(entities.Entity):
 		super().__init__(entity_type_label)
 
 		self.name = entity_type_label+str(name)
+
 		self.age = 0
+		self.health = 1
+		self.facing = random.choice([(0,1), (0,-1), (1,0), (-1,0)])
+
+
 		self.genome = genome.Genome(entity_type_label, mother_genome, father_genome)
 		self.phenotype = phenotype.Phenotype(deepcopy(self.genome))
 		self.body = body.Body(deepcopy(self.phenotype))

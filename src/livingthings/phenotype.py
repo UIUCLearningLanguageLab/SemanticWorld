@@ -3,7 +3,9 @@ import numpy as np
 class Phenotype:
 
 	def __init__(self, genome):
-		self.trait_dict = {'physical': {},
+		self.trait_dict = {'sex': {},
+						   'appearance': {},
+						   'physical': {},
 						   'mental': {},
 						   'body_states': {},
 						   'body_composition': {},
