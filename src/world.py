@@ -69,14 +69,14 @@ class World:
 			if n > 1000:
 				print("INFINITE LOOP")
 				sys.exit()
-		return (x,y)
+		return np.array([x,y])
 	
 	def next(self):
+		print("Starting Turn {}".format(self.turn_counter))
 		for living_thing in self.living_thing_list:
 			living_thing.take_turn(self)   # TODO figure out a way to make the reference to world passed in as read only
-
 		self.turn_counter += 1
-		print("Finished Turn {}".format(self.turn_counter))
+		
 
 
 

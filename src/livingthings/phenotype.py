@@ -3,17 +3,9 @@ import numpy as np
 class Phenotype:
 
 	def __init__(self, genome):
-		self.trait_dict = {'sex': {},
-						   'appearance': {},
-						   'physical': {},
-						   'mental': {},
-						   'body_states': {},
-						   'body_composition': {},
-						   'metabolism': {},
-						   'drive_system': {},
-						   'sensory_system': {},
-						   'actions': {},}
-			   
+		self.trait_dict = {}
+		for system in genome.system_label_list:
+			self.trait_dict[system] = {}
 		self.appearance_dict = {}
 
 		for gene_label in genome.gene_dict:

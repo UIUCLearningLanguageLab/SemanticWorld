@@ -13,7 +13,7 @@ class Entity:
 
 		self.num_properties = 0
 		self.property_label_list = []
-		self.property_index_dict = []
+		self.property_index_dict = {}
 		self.property_dict = {}
 
 		self.appearance_size = 0

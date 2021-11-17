@@ -5,5 +5,5 @@ if __name__ == "__main__" :
 
     the_world = world.World()
 
-    for i in range(1):
+    for i in range(30):
         the_world.next()

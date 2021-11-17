@@ -21,7 +21,6 @@ class World:
 				'human': {
 							'n': 2,
 							'distribution': ['clustered', 4],			# can be ['random'] or ['clustered', n], where n is variance from cluster center
-							'config_file': 'human_cfg',
 						 }
 	}
 

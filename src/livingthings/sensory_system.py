@@ -30,9 +30,10 @@ class SensorySystem:
 							visible_square_position_list.append((current_position[0] + x_offset, current_position[1] + y_offset))
 		return visible_square_position_list
 
-	def update_sensory_input(self, name, position, the_world):
+	def update_sensory_input(self, name, living_thing_position, the_world):
+		living_thing_position = (int(round(living_thing_position[0])), int(round(living_thing_position[1])))
 		self.sensation_list = []
-		visible_square_position_list = self.get_visible_square_position_list(position)
+		visible_square_position_list = self.get_visible_square_position_list(living_thing_position)
 		for position in visible_square_position_list:
 			new_terrain_sensation = TerrainSensation(the_world.terrain_map.terrain_tile_list[position[0]][position[1]], 
 													 self.gets_terrain_coord, 
@@ -50,7 +51,6 @@ class SensorySystem:
 															self.gets_entity_feature_labels,
 															self.gets_entity_feature_vector)
 						self.sensation_list.append(new_entity_sensation)
-
 
 
 class Sensation:

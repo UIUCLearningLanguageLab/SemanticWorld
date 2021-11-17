@@ -18,20 +18,22 @@ class Body:
 		self.metabolism_index_dict = {}
 		self.num_metabolizables = 0
 
-		self.initialize_body_positions(phenotype.trait_dict['body_states'])
+		body_state_counter = 0
+		while 'body_states' + str(body_state_counter) in phenotype.trait_dict:
+			self.initialize_body_states(body_state_counter, phenotype.trait_dict['body_states' + str(body_state_counter)])
+			body_state_counter += 1
+		print(body_state_counter)
+
 		self.initialize_body_composition(phenotype.trait_dict['body_composition'])
 		self.initialize_metabolism(phenotype.trait_dict['metabolism'])
 
-	def initialize_body_positions(self, body_position_dict):
+	def initialize_body_states(self, category, body_position_dict):
 		for position in body_position_dict:
-			data = position.split('-')
-			position_label = data[0]
-			category = data[1]
-			self.position_category_dict[position_label] = category
-			self.position_label_list.append(position_label)
-			self.position_index_dict[position_label] = self.num_positions
+			self.position_category_dict[position] = category
+			self.position_label_list.append(position)
+			self.position_index_dict[position] = self.num_positions
 			self.num_positions += 1
-			self.position_dict[position_label] = body_position_dict[position]
+			self.position_dict[position] = body_position_dict[position]
 	
 	def initialize_body_composition(self, body_composition_dict):
 		for composite in body_composition_dict:

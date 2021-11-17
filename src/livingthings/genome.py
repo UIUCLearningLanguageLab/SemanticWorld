@@ -1,6 +1,4 @@
-from config import world_cfg
 import random
-import sys
 import numpy as np
 from copy import deepcopy
 import importlib
@@ -10,6 +8,11 @@ class Genome:
 	def __init__(self, species, mother_genome, father_genome):
 
 		self.species = species
+
+		self.num_systems = 0
+		self.system_label_list = []
+		self.system_index_dict = {}
+		
 		self.num_genes = 0
 		self.gene_label_list = []
 		self.gene_index_dict = {}
@@ -66,6 +69,12 @@ class Genome:
 		
 		for trait_label in genome_info.Genome.traits:
 			# TODO error checking on cfg files
+
+			system = genome_info.Genome.traits[trait_label][0]
+			if system not in self.system_index_dict:
+				self.system_index_dict[system] = self.num_systems
+				self.system_label_list.append(system)
+				self.num_systems += 1
 
 			new_gene = Gene()
 			new_gene.generate_gene(trait_label,
